@@ -9,44 +9,53 @@
     </head>
 
     <body>
+        <header>
+            <nav>
+                <a href="./index.html">Home</a>
+                <a href="./products-search.html">Search</a>
+            </nav>
+        </header>
 
         <h1>Products</h1>
 
-        <table id="details-table">
-            <thead>
-                <tr>
-                    <th>Product ID</th>
-                    <th>Product Name</th>
-                    <th>Unit Price</th>
-                    <th>Units in stock</th>
-                    <th>Category ID</th>
-                    <th>Supplier</th>
-                    <th>Discontinued</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div id="product-details">
+            <h2>Product ID</h2>
+            <div>Product Name</div>
+            <div>Unit Price</div>
+            <div>Units in stock</div>
+            <div>Category ID</div>
+            <div>Supplier</div>
+            <div>Discontinued</div>
+        </div>
 
         <script>
             function getProductId() {
                 let parameters = new URLSearchParams(location.search);
-                return parameters.get("id");
+                return parameters.get("productid");
             }
 
             function loadProduct(productId) {
                 return fetch(`http://localhost:8081/api/products/${productId}`)
                     .then((response) => response.json());
-                
+
             }
-        
+
 
             function fillProductDetails(product) {
-                const product
+                const productDiv = document.querySelector("#product-details");
+                const detailDivs = productDiv.querySelectorAll("div");
+                detailDivs[0].innerText = product.unitPrice;
+                detailDivs[1].innerText = product.unitsInStock;
+                detailDivs[2].innerText = product.categoryId;
+                detailDivs[3].innerText = product.supplier;
+                detailDivs[4].innerText = product.discontinued;
+                detailDivs[5].innerText = product.productId;
             }
 
             window.onload = () => {
-                loadProduct(getProductId()).then(product => fillProductDetails(product))
-                
+                loadProduct(getProductId())
+                .then(product => fillProductDetails(product))
+
             }
         </script>
     </body>
