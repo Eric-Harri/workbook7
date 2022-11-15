@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css">
+    <link rel="stylesheet" href="./styles/styles.css">
     <title>Todos</title>
 </head>
 <body>
@@ -12,9 +14,15 @@
             <a href="./index.html">Home</a>
         </nav>
     </header>
-    <input type="text" id="todo-input">
-    <button id="todo-btn">Click</button>
-    <div id="message-div"></div>
+    <h1>Todo</h1>
+    <label for="todoId">Todo Id</label>
+    <input type="text" id="todoId">
+    <button id="todo-btn">Get</button>
+    <div id="message-div">
+        <span></span>
+        <p></p>
+    </div>
+    <div id="message-div2"></div>
 
     <script src="./scripts/main.js"></script>
 </body>
