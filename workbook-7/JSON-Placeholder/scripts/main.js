@@ -10,10 +10,10 @@ const messageDiv2 = document.getElementById("message-div2");
   //     messageDiv.innerHTML = data.;
   //   });
 
-function onToDoBtnClicked() {
-  const id = document.querySelector("#todoId").value; 
+function onFormSubmit(event) {
+  event.preventDefault();
+  const id = document.querySelector("#todoId").value;
   loadTodo(id);
- 
 }
 
 function loadTodo(todoId) {
@@ -24,12 +24,14 @@ function loadTodo(todoId) {
   fetch(`http://localhost:8888/todos/${todoId}`)
     .then((response) => response.json())
     .then((data) => {
-      // messageDiv.innerText = JSON.stringify(data)
+      console.log(data)
       completedSpan.innerText = data.completed;
       completedPara.innerText = data.title;
     });
 }
 
 window.onload = () => {
-  toDoBtn.onclick = onToDoBtnClicked;
+  const $q = (selector) => document.querySelector(selector)
+  const form = $q("form");
+  form.onsubmit = onFormSubmit;
 };
