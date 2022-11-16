@@ -19,8 +19,8 @@
                 <label for="completedCheckbox">Completed?</label>
                 <label for="titleInput">Task</label>
                 <input type="text" name="titleInput" id="titleInput">
-                <button id="saveBtn">Save</button>
-                <button id="deleteBtn">Delete</button>
+                <button id="saveBtn" type="submit">Save</button>
+                <button id="deleteBtn" type="button">Delete</button>
                 <p id="messageParagraph"></p>
             </form>
         </main>
@@ -102,7 +102,8 @@
                 //associate functions with HTMLElement events
                 window.onload = function () {
                     loadTodo(getTodoId());
-                    form.onsubmit = saveTodo, deleteTodo;
+                    form.onsubmit = saveTodo;
+                    deleteBtn.onclick = deleteTodo; 
                 }
 
             })()
